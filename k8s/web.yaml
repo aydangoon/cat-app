@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: web
-          image: ghcr.io/cis188/infrastructure/unit3-web:v2
+          image: ghcr.io/aydangoon/cat-app:latest
           ports:
             - containerPort: 3000
           # volumeMounts:
