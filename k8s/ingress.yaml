@@ -1,0 +1,19 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: api-ingress
+spec:
+  rules:
+    - host: "aydang.cis188.org"
+      http:
+        paths:
+          - path: "/"
+            backend:
+              serviceName: web
+              servicePort: 3000
+  tls:
+    - hosts:
+        - "aydang.cis188.org"
+      secretName: aydang-cis188-org-tls
+
+

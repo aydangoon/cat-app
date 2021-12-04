@@ -1,0 +1,21 @@
+# apiVersion: batch/v1beta1
+# kind: CronJob
+# metadata:
+#   name: aggregator
+# spec:
+#   schedule: "*/1 * * * *"
+#   successfulJobsHistoryLimit: 1
+#   failedJobsHistoryLimit: 1
+#   jobTemplate:
+#     spec:
+#       template:
+#         spec:
+#           containers:
+#             - name: worker
+#               image: ghcr.io/cis188/infrastructure/unit3-cronjob:v2
+#               env:
+#                 - name: REDIS_URL
+#                   value: "redis://redis/0"
+#           imagePullSecrets:
+#             - name: docker-registry-registrycreds
+#           restartPolicy: Never
