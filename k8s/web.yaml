@@ -21,26 +21,6 @@ spec:
             - containerPort: 3000
       imagePullSecrets:
           - name: ghcraccess
-          # volumeMounts:
-          #   - name: template-map
-          #     mountPath: /templates
-          # env:
-          #   - name: REDIS_URL
-          #     value: "redis://redis/0"
-          #   - name: ADMIN_USERNAME
-          #     valueFrom:
-          #       secretKeyRef:
-          #         name: web-secret
-          #         key: username
-          #   - name: ADMIN_PASSWORD
-          #     valueFrom:
-          #       secretKeyRef:
-          #         name: web-secret
-          #         key: password
-      # volumes:
-      #   - name: template-map
-      #     configMap:
-      #       name: template-map
 ---
 apiVersion: v1
 kind: Service
