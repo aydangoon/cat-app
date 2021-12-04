@@ -15,9 +15,12 @@ spec:
     spec:
       containers:
         - name: web
-          image: ghcr.io/aydangoon/cat-app:latest
+          image: ghcr.io/aydangoon/cat-app:main
+          imagePullPolicy: Always
           ports:
             - containerPort: 3000
+      imagePullSecrets:
+          - name: ghcraccess
           # volumeMounts:
           #   - name: template-map
           #     mountPath: /templates
