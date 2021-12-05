@@ -1,34 +1,31 @@
-import { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
+import React from "react";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Link,
+  Navigate,
+} from "react-router-dom";
+import Generate from "./Generate";
+import Top from "./Top";
 
 function App() {
-  const [fact, setFact] = useState(null);
-  const [loading, setLoading] = useState(false);
   return (
-    <div className="container-fluid">
-      <h1>Cat Facts</h1>
-      <button
-        className="btn btn-primary mb-2"
-        onClick={() => {
-          setLoading(true);
-          fetch("https://catfact.ninja/fact")
-            .then((res) => res.json())
-            .then(({ fact }) => {
-              setFact(fact);
-              setLoading(false);
-            });
-        }}
-      >
-        Get a Cat Fact
-      </button>
-      <br />
-      {loading ? (
-        <div className="spinner-border text-primary" />
-      ) : (
-        <div>{fact}</div>
-      )}
-    </div>
+    <Router>
+      <div className="d-flex flex-column justify-content-center align-items-center">
+        <nav>
+          <Link to="/generate">Generate</Link> |{" "}
+          <Link to="/top">Top Waifus</Link>
+        </nav>
+        <Routes>
+          <Route path="/generate" element={<Generate />} />
+          <Route path="/top" element={<Top />} />
+          <Route path="*" element={<Navigate to="/generate" />} />
+        </Routes>
+      </div>
+    </Router>
   );
 }
 
