@@ -1,5 +1,5 @@
 const express = require("express");
-const Pic = require("../Pic.js");
+const Pic = require("../pic.js");
 const router = express.Router();
 
 router.get("/top", async (req, res) => {
