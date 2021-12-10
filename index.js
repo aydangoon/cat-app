@@ -1,7 +1,25 @@
 const path = require("path");
 var express = require("express");
+var cors = require("cors");
+
+// mongodb connection
+const mongoose = require("mongoose");
+const url = `mongodb+srv://username:securepassword123@cluster0.u0hlo.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`;
+
+(async () => {
+  await mongoose
+    .connect(url)
+    .then(() => {
+      console.log("Connected to database ");
+    })
+    .catch((err) => {
+      console.error(`Error connecting to the database. \n${err}`);
+    });
+})();
+
 var bodyParser = require("body-parser");
 var app = express();
+app.use(cors());
 
 const pages = require("./routes/pages");
 const api = require("./routes/api");

@@ -1,37 +1,36 @@
-var express = require("express");
-const db = require("../db");
-const path = require("path");
-var router = express.Router();
+const express = require("express");
+const Picture = require("../picture.js");
+const router = express.Router();
 
-router.get("/top", async function (req, res) {
-  console.log("hi");
-  const keys = await db.keys("*").then((err, k) => {
-    console.log("here", err, k);
-    return err;
-  });
-  console.log(keys);
-  let topTen = await keys.map(async (key) => {
-    const value = parseInt(await db.get(key));
-    console.log("key", key, "value", value);
-    return { key, value };
-  });
-  console.log("topten", topTen);
-  topTen.sort((a, b) => a.value - b.value);
-  res.send({ top: topTen.slice(0, 10) });
+router.get("/top", async (req, res) => {
+  console.log("request @ /top");
+  const pics = await Picture.find();
+  pics.sort((a, b) => b.votes - a.votes);
+  res
+    .status(200)
+    .send({ top: pics.slice(0, 10).map(({ url, votes }) => ({ url, votes })) });
 });
 
 router.post("/vote", async (req, res) => {
-  console.log("reqbody:", req.body, db);
   const { url, vote } = req.body;
-  if (!(await db.exists(url))) {
-    db.set(url, vote.toString());
-  } else {
-    let val = parseInt(await db.get(url));
-    val += parseInt(vote);
-    db.set(url, val.toString());
-  }
-  res.status(200);
-  res.send({ url, val: await db.get(url) });
+  console.log("post @ /vote", url, vote);
+  Picture.findOne({ url }, async (err, pic) => {
+    if (err) {
+      console.error(err);
+      res.status(500).send("error");
+    } else if (pic) {
+      pic.votes += vote;
+      await pic.save();
+      res.status(200).send("updated!");
+    } else {
+      const newPic = new Picture({
+        url,
+        votes: vote,
+      });
+      await newPic.save();
+      res.status(200).send("added!");
+    }
+  });
 });
 
 module.exports = router;

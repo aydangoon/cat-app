@@ -17,7 +17,7 @@ function App() {
       <div className="d-flex flex-column justify-content-center align-items-center">
         <nav>
           <Link to="/generate">Generate</Link> |{" "}
-          <Link to="/top">Top Waifus</Link>
+          <Link to="/top">Most Popular</Link>
         </nav>
         <Routes>
           <Route path="/generate" element={<Generate />} />
