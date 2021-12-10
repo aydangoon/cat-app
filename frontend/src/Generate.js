@@ -5,10 +5,10 @@ const Generate = () => {
 
   const generate = () => {
     setLoading(true);
-    fetch("https://api.waifu.pics/sfw/waifu")
+    fetch("https://api.thecatapi.com/v1/images/search")
       .then((res) => res.json())
-      .then(({ url }) => {
-        setUrl(url);
+      .then((arr) => {
+        setUrl(arr[0].url);
         setLoading(false);
       });
   };
@@ -50,7 +50,7 @@ const Generate = () => {
                   vote(1).then(generate);
                 }}
               >
-                based
+                😻
               </button>
               <button
                 className="btn btn-light"
@@ -58,7 +58,7 @@ const Generate = () => {
                   vote(-1).then(generate);
                 }}
               >
-                cringe
+                😿
               </button>
             </div>
           )}

@@ -5,4 +5,4 @@ const schema = mongoose.Schema({
   votes: Number,
 });
 
-module.exports = mongoose.model("Picture", schema);
+module.exports = mongoose.model("Pic", schema);

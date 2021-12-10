@@ -1,10 +1,10 @@
 const express = require("express");
-const Picture = require("../picture.js");
+const Pic = require("../Pic.js");
 const router = express.Router();
 
 router.get("/top", async (req, res) => {
   console.log("request @ /top");
-  const pics = await Picture.find();
+  const pics = await Pic.find();
   pics.sort((a, b) => b.votes - a.votes);
   res
     .status(200)
@@ -14,7 +14,7 @@ router.get("/top", async (req, res) => {
 router.post("/vote", async (req, res) => {
   const { url, vote } = req.body;
   console.log("post @ /vote", url, vote);
-  Picture.findOne({ url }, async (err, pic) => {
+  Pic.findOne({ url }, async (err, pic) => {
     if (err) {
       console.error(err);
       res.status(500).send("error");
@@ -23,7 +23,7 @@ router.post("/vote", async (req, res) => {
       await pic.save();
       res.status(200).send("updated!");
     } else {
-      const newPic = new Picture({
+      const newPic = new Pic({
         url,
         votes: vote,
       });

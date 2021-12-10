@@ -16,7 +16,7 @@ const Top = () => {
     <div className="spinner-border text-primary" />
   ) : (
     <div className="d-flex flex-column justify-content-center align-items-center">
-      <h1>top anime girls:</h1>
+      <h1>top cats</h1>
       {top ? (
         <div>
           {top.map(({ url, votes }, i) => (
