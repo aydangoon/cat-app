@@ -4,7 +4,7 @@ const Top = () => {
   const [top, setTop] = useState(null);
 
   useEffect(() => {
-    fetch("http://localhost:3000/api/top")
+    fetch("https://aydang.cis188.org/api/top")
       .then((res) => res.json())
       .then(({ top }) => {
         setTop(top);

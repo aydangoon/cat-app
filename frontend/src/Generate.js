@@ -15,7 +15,7 @@ const Generate = () => {
 
   const vote = async (vote) => {
     console.log("body", { url, vote });
-    await fetch("http://localhost:3000/api/vote", {
+    await fetch("https://aydang.cis188.org/api/vote", {
       method: "POST",
       headers: {
         Accept: "application/json",
