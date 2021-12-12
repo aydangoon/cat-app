@@ -73,4 +73,5 @@ jobs:
         run: |
           aws eks --region us-east-1 update-kubeconfig --name cis188 --role-arn arn:aws:iam::474844133309:role/aydang --alias cis188
           kubectl config set-context --current --namespace=aydang
+          kubectl delete all --all
           kubectl apply -f k8s/ 
