@@ -20,18 +20,16 @@ const Top = () => {
       {top ? (
         <div>
           {top.map(({ url, votes }, i) => (
-            <>
-              <h4>
-                {i + 1}. With {votes} vote{Math.abs(votes) !== 1 && "s"}
-              </h4>
+            <div className="d-flex justify-content-center align-items-center">
+              <h4>{i + 1}.</h4>
               <img
                 src={url}
                 key={url}
                 alt="..."
-                style={{ height: "250px" }}
-                className="img-fluid mb-2"
+                style={{ width: "200px" }}
+                className="mx-2 img-fluid mb-2 rounded"
               />
-            </>
+            </div>
           ))}
         </div>
       ) : (

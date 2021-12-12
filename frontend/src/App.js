@@ -15,7 +15,7 @@ function App() {
   return (
     <Router>
       <div className="d-flex flex-column justify-content-center align-items-center">
-        <nav>
+        <nav className="m-2">
           <Link to="/generate">Generate</Link> |{" "}
           <Link to="/top">Most Popular</Link>
         </nav>

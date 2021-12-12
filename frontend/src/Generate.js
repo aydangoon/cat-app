@@ -14,7 +14,6 @@ const Generate = () => {
   };
 
   const vote = async (vote) => {
-    console.log("body", { url, vote });
     await fetch("https://aydang.cis188.org/api/vote", {
       method: "POST",
       headers: {
@@ -37,15 +36,16 @@ const Generate = () => {
         <div>
           <img
             src={url}
-            style={{ height: "500px" }}
-            className="img-fluid mb-2"
-            alt="(no anime yet...)"
+            style={{ width: "400px" }}
+            className="img-fluid m-2 rounded"
+            alt="(no cats yet...)"
           />
           <br />
           {url && (
             <div className="d-flex justify-content-center">
               <button
-                className="btn btn-dark mx-2"
+                style={{ width: "100px" }}
+                className="btn btn-dark mx-2 p-2 hover"
                 onClick={() => {
                   vote(1).then(generate);
                 }}
@@ -53,7 +53,8 @@ const Generate = () => {
                 😻
               </button>
               <button
-                className="btn btn-light"
+                style={{ width: "100px" }}
+                className="btn btn-dark p-2 hover"
                 onClick={() => {
                   vote(-1).then(generate);
                 }}

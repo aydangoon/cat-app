@@ -14,11 +14,19 @@ env:
   IMAGE_NAME: ${{ github.repository }}
 
 jobs:
+  build-frontend:
+    runs-on: ubuntu-latest
+    name: Build our frontend
+    steps:
+      - name: build frontend
+        run: |
+          cd frontend && npm run build
   build-and-push-image:
     runs-on: ubuntu-latest
     permissions:
       contents: read
       packages: write
+    needs: build-frontend
 
     steps:
       - name: Checkout repository
