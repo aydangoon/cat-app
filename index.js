@@ -7,14 +7,9 @@ const mongoose = require("mongoose");
 const url = `mongodb+srv://username:securepassword123@cluster0.u0hlo.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`;
 
 (async () => {
-  await mongoose
-    .connect(url)
-    .then(() => {
-      console.log("Connected to database ");
-    })
-    .catch((err) => {
-      console.error(`Error connecting to the database. \n${err}`);
-    });
+  await mongoose.connect(url).catch((err) => {
+    console.error(`Error connecting to the database. \n${err}`);
+  });
 })();
 
 var bodyParser = require("body-parser");
@@ -31,6 +26,8 @@ app.use("/api", api);
 
 app.use("/", pages);
 
-app.listen(3000, function () {
+const server = app.listen(3000, function () {
   console.log("Listening on port 3000...");
 });
+
+module.exports = server;

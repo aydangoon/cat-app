@@ -7,4 +7,8 @@ router.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "..", "frontend", "build", "index.html"));
 });
 
+router.post("*", (req, res) => {
+  res.status(403).send("forbidden");
+});
+
 module.exports = router;
