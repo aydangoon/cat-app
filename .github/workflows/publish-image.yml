@@ -45,6 +45,7 @@ jobs:
 
       - name: Run unit tests
         run: |
+          npm install
           npm run test
       
       - name: Build and push Docker image
