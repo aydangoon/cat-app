@@ -19,12 +19,14 @@ router.post("/vote", async (req, res) => {
     } else if (pic) {
       pic.votes += vote;
       await pic.save();
+      res.status(200).send("updated!");
     } else {
       const newPic = new Pic({
         url,
         votes: vote,
       });
       await newPic.save();
+      res.status(200).send("added!");
     }
   });
 });
